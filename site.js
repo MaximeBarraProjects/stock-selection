@@ -1,4 +1,4 @@
-// Stock Selection — site vitrine : langue, theme, captures, agrandissement, contact.
+// Maison Barra - Data terminal — site vitrine : langue, theme, captures, agrandissement, contact.
 
 // Coordonnees affichees en pied de page ; un champ vide n'est pas affiche.
 const AUTEUR = { nom: "", linkedin: "", email: "" };
@@ -33,8 +33,8 @@ const AUTEUR = { nom: "", linkedin: "", email: "" };
     document.querySelectorAll("[data-set-lang]").forEach(function (b) {
       b.setAttribute("aria-pressed", String(b.dataset.setLang === l));
     });
-    document.title = l === "fr" ? "Stock Selection — poste de recherche actions"
-                                : "Stock Selection — equity research workstation";
+    document.title = l === "fr" ? "Maison Barra - Data terminal — données de marché pour environ 870 actions"
+                                : "Maison Barra - Data terminal — market data for about 870 stocks";
     rafraichirCaptures();
     legendeZoom();
   }
