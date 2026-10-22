@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-lang="en" data-theme="light">
+<html lang="en" data-lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,12 +14,13 @@
 <meta property="og:image:height" content="630">
 <link rel="canonical" href="https://rayzz73.github.io/stock-selection/">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="color-scheme" content="light dark">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#08090A">
 <link rel="icon" href="images/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="images/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..100,400..800&family=EB+Garamond:ital,wght@0,400..600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <script>
   // avant l'affichage : langue et theme memorises (sinon ceux du navigateur), pour eviter un flash
@@ -27,7 +28,7 @@
     var d = document.documentElement, l = null, t = null;
     try { l = localStorage.getItem("ss-lang"); t = localStorage.getItem("ss-theme"); } catch (e) {}
     l = l || ((navigator.language || "en").toLowerCase().indexOf("fr") === 0 ? "fr" : "en");
-    t = t || (window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    t = t || "dark";
     d.setAttribute("data-lang", l); d.setAttribute("lang", l); d.setAttribute("data-theme", t);
     d.classList.add("js");
   })();
@@ -83,6 +84,7 @@
   </div>
 
   <figure class="hero-shot">
+    <div class="glow" aria-hidden="true"></div>
     <button type="button" class="shot-btn" data-zoom="02_stock_sheet">
       <img data-shot="02_stock_sheet" src="images/02_stock_sheet.webp" width="1440" height="880" alt="Stock sheet of PepsiCo: links to the latest 10-K and 10-Q, analyst consensus, earnings revisions and a five-year price chart with results and ex-dividend dates" fetchpriority="high">
     </button>
@@ -92,23 +94,33 @@
   <aside class="facts" aria-labelledby="facts-h">
     <h2 id="facts-h"><span data-l="en">Key data</span><span data-l="fr">Chiffres clés</span></h2>
     <dl>
-      <dt><span data-l="en">Universe</span><span data-l="fr">Univers</span></dt>
-      <dd><span data-l="en">~870 stocks: United States, Europe, Japan</span><span data-l="fr">~870 actions&nbsp;: États-Unis, Europe, Japon</span></dd>
-      <dt><span data-l="en">Reports</span><span data-l="fr">Rapports</span></dt>
-      <dd><span data-l="en">Latest 10-K, 20-F and quarterly filings from SEC EDGAR</span><span data-l="fr">Derniers 10-K, 20-F et trimestriels via SEC EDGAR</span></dd>
-      <dt><span data-l="en">Interface</span><span data-l="fr">Interface</span></dt>
-      <dd><span data-l="en">14 tabs, English and French, light and dark</span><span data-l="fr">14 onglets, anglais et français, clair et sombre</span></dd>
-      <dt><span data-l="en">Code</span><span data-l="fr">Code</span></dt>
-      <dd><span data-l="en">Python, ~42,000 lines, 240+ automated tests</span><span data-l="fr">Python, ~42 000 lignes, plus de 240 tests automatisés</span></dd>
-      <dt><span data-l="en">Sources</span><span data-l="fr">Sources</span></dt>
-      <dd>Yahoo Finance, SEC EDGAR, <span data-l="en">ECB, BIS</span><span data-l="fr">BCE, BRI</span>, New York Fed, Bundesbank, <span data-l="en">OECD</span><span data-l="fr">OCDE</span>, FRED</dd>
+      <div>
+        <dt><span data-l="en">Universe</span><span data-l="fr">Univers</span></dt>
+        <dd><span data-l="en">~870 stocks: United States, Europe, Japan</span><span data-l="fr">~870 actions&nbsp;: États-Unis, Europe, Japon</span></dd>
+      </div>
+      <div>
+        <dt><span data-l="en">Reports</span><span data-l="fr">Rapports</span></dt>
+        <dd><span data-l="en">Latest 10-K, 20-F and quarterly filings from SEC EDGAR</span><span data-l="fr">Derniers 10-K, 20-F et trimestriels via SEC EDGAR</span></dd>
+      </div>
+      <div>
+        <dt><span data-l="en">Interface</span><span data-l="fr">Interface</span></dt>
+        <dd><span data-l="en">14 tabs, English and French, light and dark</span><span data-l="fr">14 onglets, anglais et français, clair et sombre</span></dd>
+      </div>
+      <div>
+        <dt><span data-l="en">Code</span><span data-l="fr">Code</span></dt>
+        <dd><span data-l="en">Python, ~42,000 lines, 240+ automated tests</span><span data-l="fr">Python, ~42 000 lignes, plus de 240 tests automatisés</span></dd>
+      </div>
+      <div>
+        <dt><span data-l="en">Sources</span><span data-l="fr">Sources</span></dt>
+        <dd>Yahoo Finance, SEC EDGAR, <span data-l="en">ECB, BIS</span><span data-l="fr">BCE, BRI</span>, New York Fed, Bundesbank, <span data-l="en">OECD</span><span data-l="fr">OCDE</span>, FRED</dd>
+      </div>
     </dl>
   </aside>
 </section>
 
 <!-- ============================================================ ce que le projet montre -->
 <section class="section" id="proof" aria-labelledby="proof-h">
-  <h2 id="proof-h" class="section-h"><span data-l="en">What the project shows</span><span data-l="fr">Ce que montre ce projet</span></h2>
+  <h2 id="proof-h" class="section-h"><span data-l="en">What the project shows. <span class="dim">Two finance skills, and the engineering to deliver them.</span></span><span data-l="fr">Ce que montre ce projet. <span class="dim">Deux compétences financières, et l'ingénierie pour les livrer.</span></span></h2>
   <div class="proof">
     <article>
       <h3><span data-l="en">Reading a company like an analyst</span><span data-l="fr">Lire une société comme un analyste</span></h3>
@@ -127,8 +139,8 @@
 
 <!-- ============================================================ visite -->
 <section class="section" id="tour" aria-labelledby="tour-h">
-  <h2 id="tour-h" class="section-h"><span data-l="en">A tour of the application</span><span data-l="fr">Visite de l'application</span></h2>
-  <p class="lede"><span data-l="en">Pick a tab, as in the app. Click a screen to enlarge it; the language and theme buttons at the top also switch the screenshots.</span><span data-l="fr">Choisissez un onglet, comme dans l'application. Cliquez sur un écran pour l'agrandir&nbsp;; les boutons de langue et de thème en haut changent aussi les captures.</span></p>
+  <h2 id="tour-h" class="section-h"><span data-l="en">A tour of the application. <span class="dim">Pick a tab, as in the app.</span></span><span data-l="fr">Visite de l'application. <span class="dim">Choisissez un onglet, comme dans l'application.</span></span></h2>
+  <p class="lede"><span data-l="en">Click a screen to enlarge it. The language and theme buttons at the top also switch the screenshots.</span><span data-l="fr">Cliquez sur un écran pour l'agrandir. Les boutons de langue et de thème en haut changent aussi les captures.</span></p>
 
   <div class="window">
     <div class="tabs" role="tablist" aria-label="Tabs">
@@ -230,8 +242,7 @@
 
 <!-- ============================================================ construction -->
 <section class="section" id="build" aria-labelledby="build-h">
-  <h2 id="build-h" class="section-h"><span data-l="en">How it is built</span><span data-l="fr">Comment c'est construit</span></h2>
-  <p class="lede"><span data-l="en">No server and no database: scheduled runs download and compute, write files, and the desktop app reads them.</span><span data-l="fr">Ni serveur ni base de données&nbsp;: des runs téléchargent et calculent, écrivent des fichiers, et l'application de bureau les lit.</span></p>
+  <h2 id="build-h" class="section-h"><span data-l="en">How it is built. <span class="dim">No server and no database: scheduled runs write files, the desktop app reads them.</span></span><span data-l="fr">Comment c'est construit. <span class="dim">Ni serveur ni base de données&nbsp;: des runs écrivent des fichiers, l'application les lit.</span></span></h2>
 
   <ol class="flow">
     <li>
