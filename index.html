@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=2026-10-22b">
+<link rel="stylesheet" href="style.css?v=2026-10-22c">
 <script>
   // avant l'affichage : langue et theme memorises (sinon ceux du navigateur), pour eviter un flash
   (function () {
@@ -85,10 +85,10 @@
 
   <figure class="hero-shot">
     <div class="glow" aria-hidden="true"></div>
-    <button type="button" class="shot-btn" data-zoom="05_performance">
-      <img data-shot="05_performance" src="images/05_performance.webp" width="1440" height="880" alt="Performance tab: an example portfolio against the MSCI World, with time-weighted return, volatility, drawdown, Sharpe ratio, tracking error and value at risk" fetchpriority="high">
+    <button type="button" class="shot-btn" data-zoom="02_stock_sheet">
+      <img data-shot="02_stock_sheet" src="images/02_stock_sheet.webp" width="1672" height="982" alt="Stock sheet of PepsiCo: company description, links to the latest 10-K and 10-Q, analyst consensus and earnings revisions, and a five-year price chart with the analyst target, results and ex-dividend dates" fetchpriority="high">
     </button>
-    <figcaption class="cap"><span data-l="en">An example portfolio against the MSCI World: time-weighted return, attribution and risk statistics. Fictitious transactions, real market prices.</span><span data-l="fr">Un portefeuille d'exemple face au MSCI World&nbsp;: rendement pondéré par le temps, attribution et statistiques de risque. Transactions fictives, cours de marché réels.</span></figcaption>
+    <figcaption class="cap"><span data-l="en">The stock sheet of PepsiCo: company profile, latest 10-K and 10-Q one click away, analyst consensus, earnings revisions and the price chart.</span><span data-l="fr">La fiche titre de PepsiCo&nbsp;: profil de la société, derniers 10-K et 10-Q à un clic, consensus des analystes, révisions de bénéfices et graphique de cours.</span></figcaption>
   </figure>
 
   <aside class="facts" aria-labelledby="facts-h">
@@ -144,7 +144,7 @@
 
   <div class="window">
     <div class="tabs" role="tablist" aria-label="Tabs">
-      <button type="button" role="tab" id="t-sheet" aria-controls="p-sheet" aria-selected="true"><span data-l="en">Stock sheet</span><span data-l="fr">Fiche titre</span></button>
+      <button type="button" role="tab" id="t-perf" aria-controls="p-perf" aria-selected="true"><span data-l="en">Portfolio</span><span data-l="fr">Portefeuille</span></button>
       <button type="button" role="tab" id="t-screen" aria-controls="p-screen" aria-selected="false" tabindex="-1"><span data-l="en">Screener</span><span data-l="fr">Screener</span></button>
       <button type="button" role="tab" id="t-compare" aria-controls="p-compare" aria-selected="false" tabindex="-1"><span data-l="en">Compare</span><span data-l="fr">Comparer</span></button>
       <button type="button" role="tab" id="t-rates" aria-controls="p-rates" aria-selected="false" tabindex="-1"><span data-l="en">Rates</span><span data-l="fr">Taux</span></button>
@@ -153,13 +153,13 @@
       <button type="button" role="tab" id="t-runs" aria-controls="p-runs" aria-selected="false" tabindex="-1"><span data-l="en">Runs</span><span data-l="fr">Runs</span></button>
     </div>
 
-    <div class="panel" role="tabpanel" id="p-sheet" aria-labelledby="t-sheet">
+    <div class="panel" role="tabpanel" id="p-perf" aria-labelledby="t-perf">
       <div class="panel-text">
-        <h3><span data-l="en">Every company's sheet, and its official reports</span><span data-l="fr">La fiche de chaque société, et ses rapports officiels</span></h3>
-        <p><span data-l="en">Price chart with results and dividend dates, the analyst consensus (number of analysts, recommendation, low, average and high target) and the revisions of earnings forecasts over one and three months.</span><span data-l="fr">Graphique de cours avec dates de résultats et de dividendes, consensus des analystes (nombre, recommandation, objectif bas, moyen et haut) et révisions des prévisions de bénéfices sur un et trois mois.</span></p>
-        <p class="aside"><span data-l="en">A Reports line opens the latest 10-K (or 20-F), the latest filing of any kind, or the investor relations page for companies outside the SEC.</span><span data-l="fr">Une ligne Rapports ouvre le dernier 10-K (ou 20-F), le dernier dépôt quel qu'il soit, ou la page relations investisseurs des sociétés hors SEC.</span></p>
+        <h3><span data-l="en">Portfolio return and risk</span><span data-l="fr">Performance et risque d'un portefeuille</span></h3>
+        <p><span data-l="en">Rebuilt from the transactions kept in Excel: time-weighted return, dividends net of withholding tax by country, comparison with a benchmark, attribution by sector, volatility, drawdown, Sharpe ratio, tracking error and value at risk.</span><span data-l="fr">Reconstruit à partir des transactions tenues dans Excel&nbsp;: rendement pondéré par le temps, dividendes nets de retenue à la source par pays, comparaison à un indice, attribution sectorielle, volatilité, perte maximale, ratio de Sharpe, tracking error et valeur à risque.</span></p>
+        <p class="aside"><span data-l="en">The screenshot shows an example portfolio: fictitious transactions, real market prices.</span><span data-l="fr">La capture montre un portefeuille d'exemple&nbsp;: transactions fictives, cours de marché réels.</span></p>
       </div>
-      <button type="button" class="shot-btn" data-zoom="02_stock_sheet"><img data-shot="02_stock_sheet" src="images/02_stock_sheet.webp" width="1440" height="880" loading="lazy" alt="Stock sheet of PepsiCo: links to the latest 10-K and 10-Q, analyst consensus and a five-year price chart"></button>
+      <button type="button" class="shot-btn" data-zoom="05_performance"><img data-shot="05_performance" src="images/05_performance.webp" width="1440" height="880" loading="lazy" alt="Performance tab: an example portfolio against the MSCI World, with a table of return and risk statistics"></button>
     </div>
 
     <div class="panel" role="tabpanel" id="p-screen" aria-labelledby="t-screen">
@@ -300,6 +300,6 @@
   <img alt="">
 </dialog>
 
-<script src="site.js?v=2026-10-22b" defer></script>
+<script src="site.js?v=2026-10-22c" defer></script>
 </body>
 </html>
