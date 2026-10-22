@@ -3,7 +3,7 @@
 // Coordonnees affichees sur la page ; un champ vide n'est pas affiche.
 //   nom      : ex. "Prénom Nom"  -> "Conçu et codé par Prénom Nom" en haut de page
 //   linkedin : URL complete du profil -> boutons "Me contacter sur LinkedIn"
-const AUTEUR = { nom: "", linkedin: "" };
+const AUTEUR = { nom: "Maxime Barra", linkedin: "https://www.linkedin.com/in/mbarra" };
 
 // Chaque capture existe sous les quatre noms images/[fr/]nom[_dark].webp.
 (function () {
