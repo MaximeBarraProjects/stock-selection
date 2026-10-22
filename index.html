@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Maison Barra - Data terminal — market data for about 870 stocks</title>
-<meta name="description" content="A Windows data terminal: about 870 listed companies with their fundamentals, analyst consensus and links to their latest official reports, plus news, rates, currencies, bonds, crypto and the market regime. Designed and coded end to end in Python.">
+<title>Maison Barra - Data terminal — a market data terminal built end to end</title>
+<meta name="description" content="A Windows market data terminal built single-handedly in Python: about 870 listed companies with their fundamentals, analyst consensus and official reports, plus rates, currencies, bonds and a reading of the market regime.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Maison Barra - Data terminal">
-<meta property="og:description" content="About 870 stocks with their fundamentals, analyst consensus and latest official reports (10-K, 20-F), plus news, rates, currencies, bonds, crypto and the market regime. Windows app, English and French.">
+<meta property="og:description" content="A market data terminal designed, coded, tested and shipped by one person: about 870 stocks, fundamentals, analyst consensus, official reports, rates, currencies and the market regime. English and French.">
 <meta property="og:url" content="https://rayzz73.github.io/stock-selection/">
 <meta property="og:image" content="https://rayzz73.github.io/stock-selection/images/og.png">
 <meta property="og:image:width" content="1200">
@@ -19,7 +19,7 @@
 <link rel="apple-touch-icon" href="images/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,400..700&family=EB+Garamond:ital,wght@0,400..700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..100,400..800&family=EB+Garamond:ital,wght@0,400..600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <script>
   // avant l'affichage : langue et theme memorises (sinon ceux du navigateur), pour eviter un flash
@@ -29,6 +29,7 @@
     l = l || ((navigator.language || "en").toLowerCase().indexOf("fr") === 0 ? "fr" : "en");
     t = t || (window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
     d.setAttribute("data-lang", l); d.setAttribute("lang", l); d.setAttribute("data-theme", t);
+    d.classList.add("js");
   })();
 </script>
 </head>
@@ -38,16 +39,16 @@
 <header class="bar">
   <div class="bar-in">
     <a class="mark" href="#top" aria-label="Maison Barra - Data terminal">
-      <img src="images/logo.png" width="30" height="30" alt="">
+      <img src="images/logo.png" width="28" height="28" alt="">
       <span>Maison Barra <em>Data terminal</em></span>
     </a>
     <nav class="nav" aria-label="Sections">
-      <a href="#features"><span data-l="en">What it shows</span><span data-l="fr">Contenu</span></a>
-      <a href="#screens"><span data-l="en">Screens</span><span data-l="fr">Écrans</span></a>
-      <a href="#how"><span data-l="en">How it works</span><span data-l="fr">Fonctionnement</span></a>
-      <a href="#engineering"><span data-l="en">Engineering</span><span data-l="fr">Ingénierie</span></a>
+      <a href="#proof"><span data-l="en">The project</span><span data-l="fr">Le projet</span></a>
+      <a href="#tour"><span data-l="en">Tour</span><span data-l="fr">Visite</span></a>
+      <a href="#build"><span data-l="en">How it is built</span><span data-l="fr">Construction</span></a>
     </nav>
     <div class="toggles">
+      <a class="btn btn-small" data-linkedin hidden><span data-l="en">Contact</span><span data-l="fr">Contact</span></a>
       <div class="seg" role="group" aria-label="Language / Langue">
         <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
         <button type="button" data-set-lang="fr" aria-pressed="false">FR</button>
@@ -63,263 +64,214 @@
 
 <main id="main">
 
-<!-- ============================================================ couverture -->
-<section class="cover" id="top">
-  <div class="cover-grid">
-    <div class="cover-text">
-      <p class="kicker"><span data-l="en">Personal project, 2026. Windows desktop application.</span><span data-l="fr">Projet personnel, 2026. Application de bureau Windows.</span></p>
-      <h1>
-        <span data-l="en">A market data terminal, designed and coded end to end</span>
-        <span data-l="fr">Un terminal de données de marché, conçu et codé de bout en bout</span>
-      </h1>
-      <p class="standfirst">
-        <span data-l="en">Maison Barra - Data terminal gathers, for about 870 listed companies, their fundamentals, the analyst consensus and links to their latest official reports, next to news, rates, currencies, bonds, crypto and a reading of the market regime. One person built all of it: the data pipeline, the interface, the tests and the Windows executable.</span>
-        <span data-l="fr">Maison Barra - Data terminal réunit, pour environ 870 sociétés cotées, leurs fondamentaux, le consensus des analystes et les liens vers leurs derniers rapports officiels, à côté de l'actualité, des taux, des devises, des obligations, des cryptomonnaies et d'une lecture du régime de marché. Une seule personne a tout construit&nbsp;: la chaîne de données, l'interface, les tests et l'exécutable Windows.</span>
-      </p>
-    </div>
-    <aside class="keydata" aria-labelledby="kd-title">
-      <h2 id="kd-title"><span data-l="en">Key data</span><span data-l="fr">Chiffres clés</span></h2>
-      <dl>
-        <dt><span data-l="en">Universe</span><span data-l="fr">Univers</span></dt>
-        <dd><span data-l="en">~870 stocks: United States, Europe, Japan</span><span data-l="fr">~870 actions&nbsp;: États-Unis, Europe, Japon</span></dd>
-        <dt><span data-l="en">Interface</span><span data-l="fr">Interface</span></dt>
-        <dd><span data-l="en">14 tabs, English and French, light and dark</span><span data-l="fr">14 onglets, anglais et français, clair et sombre</span></dd>
-        <dt><span data-l="en">Reports</span><span data-l="fr">Rapports</span></dt>
-        <dd><span data-l="en">Latest 10-K, 20-F and quarterly filings from SEC EDGAR</span><span data-l="fr">Derniers 10-K, 20-F et rapports trimestriels via SEC EDGAR</span></dd>
-        <dt><span data-l="en">Code</span><span data-l="fr">Code</span></dt>
-        <dd><span data-l="en">83 Python files, ~38,000 lines</span><span data-l="fr">83 fichiers Python, ~38 000 lignes</span></dd>
-        <dt><span data-l="en">Tests</span><span data-l="fr">Tests</span></dt>
-        <dd><span data-l="en">91 automated tests</span><span data-l="fr">91 tests automatisés</span></dd>
-        <dt><span data-l="en">Data</span><span data-l="fr">Données</span></dt>
-        <dd>Yahoo Finance, SEC EDGAR, ECB, BIS, New York Fed, Bundesbank, <span data-l="en">OECD</span><span data-l="fr">OCDE</span>, FRED</dd>
-      </dl>
-    </aside>
+<!-- ============================================================ ouverture -->
+<section class="hero" id="top">
+  <div class="hero-text">
+    <p class="byline" data-byline><span data-l="en">Personal project, 2026. Windows desktop application.</span><span data-l="fr">Projet personnel, 2026. Application de bureau Windows.</span></p>
+    <h1>
+      <span data-l="en">I built my own market data terminal, end to end.</span>
+      <span data-l="fr">J'ai construit seul mon terminal de données de marché.</span>
+    </h1>
+    <p class="standfirst">
+      <span data-l="en">About 870 listed companies with their fundamentals, the analyst consensus and their official reports, next to rates, currencies, bonds and a reading of the market regime. Designed, coded, tested and shipped by one person, in Python.</span>
+      <span data-l="fr">Environ 870 sociétés cotées avec leurs fondamentaux, le consensus des analystes et leurs rapports officiels, à côté des taux, des devises, des obligations et d'une lecture du régime de marché. Conçu, codé, testé et livré par une seule personne, en Python.</span>
+    </p>
+    <p class="actions">
+      <a class="btn" href="#tour"><span data-l="en">Take the tour</span><span data-l="fr">Visiter l'application</span></a>
+      <a class="btn btn-ghost" data-linkedin hidden><span data-l="en">Contact me on LinkedIn</span><span data-l="fr">Me contacter sur LinkedIn</span></a>
+    </p>
   </div>
 
-  <figure class="exhibit exhibit-wide" id="fig1">
-    <div class="annotated">
-      <button type="button" class="shot-btn" data-zoom="01_screen" aria-label="Enlarge">
-        <img data-shot="01_screen" src="images/01_screen.webp" width="1440" height="880" alt="Screen tab: a table of about 870 stocks with sector, zone, flags, price, returns, distance from the high and valuation multiples" fetchpriority="high">
-      </button>
-      <span class="pin" data-l="en" style="left:80%;top:7.6%">1</span>
-      <span class="pin" data-l="fr" style="left:79%;top:7.6%">1</span>
-      <span class="pin" data-l="en" style="left:67.4%;top:12.1%">2</span>
-      <span class="pin" data-l="fr" style="left:69.6%;top:12.1%">2</span>
-      <span class="pin" data-l="en" style="left:37.6%;top:18.5%">3</span>
-      <span class="pin" data-l="fr" style="left:35%;top:18.5%">3</span>
-      <span class="pin" data-l="en" style="left:75.9%;top:18.5%">4</span>
-      <span class="pin" data-l="fr" style="left:70.7%;top:18.5%">4</span>
-      <span class="pin" style="left:31%;top:98.7%">5</span>
-    </div>
-    <figcaption>
-      <p class="fig-title"><b><span data-l="en">Figure 1.</span><span data-l="fr">Figure 1.</span></b>
-        <span data-l="en">The Screen tab: the whole universe on one table.</span><span data-l="fr">L'onglet Screener&nbsp;: tout l'univers dans un seul tableau.</span></p>
-      <ol class="legend">
-        <li><span data-l="en">Fourteen tabs, which can be reordered or detached into their own windows.</span><span data-l="fr">Quatorze onglets, que l'on peut réordonner ou détacher dans leur propre fenêtre.</span></li>
-        <li><span data-l="en">Every price also shown in the currency of your choice, at the live exchange rate.</span><span data-l="fr">Chaque cours aussi affiché dans la devise de votre choix, au taux de change en direct.</span></li>
-        <li><span data-l="en">Reading flags: stressed stock, small cap, earnings within 14 days.</span><span data-l="fr">Repères de lecture&nbsp;: titre sous tension, petite capitalisation, résultats sous 14 jours.</span></li>
-        <li><span data-l="en">Returns, distance from the 52-week high, valuation multiples and the analyst consensus.</span><span data-l="fr">Performances, écart au plus haut sur un an, multiples de valorisation et consensus des analystes.</span></li>
-        <li><span data-l="en">Date of the daily prices and of the weekly fundamentals in use.</span><span data-l="fr">Date des cours quotidiens et des fondamentaux hebdomadaires utilisés.</span></li>
-      </ol>
-      <p class="src"><span data-l="en">Source: Maison Barra - Data terminal, prices of 02/10/2026.</span><span data-l="fr">Source&nbsp;: Maison Barra - Data terminal, cours du 02/10/2026.</span></p>
-    </figcaption>
+  <figure class="hero-shot">
+    <button type="button" class="shot-btn" data-zoom="01_screen">
+      <img data-shot="01_screen" src="images/01_screen.webp" width="1440" height="880" alt="Screener tab: a table of about 870 stocks with sector, zone, price, returns, distance from the high, valuation multiples and the analyst consensus" fetchpriority="high">
+    </button>
+    <figcaption class="cap"><span data-l="en">The Screener tab: the whole universe on one table, prices also shown in the currency of your choice.</span><span data-l="fr">L'onglet Screener&nbsp;: tout l'univers dans un seul tableau, avec chaque cours aussi affiché dans la devise de votre choix.</span></figcaption>
   </figure>
+
+  <aside class="facts" aria-labelledby="facts-h">
+    <h2 id="facts-h"><span data-l="en">Key data</span><span data-l="fr">Chiffres clés</span></h2>
+    <dl>
+      <dt><span data-l="en">Universe</span><span data-l="fr">Univers</span></dt>
+      <dd><span data-l="en">~870 stocks: United States, Europe, Japan</span><span data-l="fr">~870 actions&nbsp;: États-Unis, Europe, Japon</span></dd>
+      <dt><span data-l="en">Reports</span><span data-l="fr">Rapports</span></dt>
+      <dd><span data-l="en">Latest 10-K, 20-F and quarterly filings from SEC EDGAR</span><span data-l="fr">Derniers 10-K, 20-F et trimestriels via SEC EDGAR</span></dd>
+      <dt><span data-l="en">Interface</span><span data-l="fr">Interface</span></dt>
+      <dd><span data-l="en">14 tabs, English and French, light and dark</span><span data-l="fr">14 onglets, anglais et français, clair et sombre</span></dd>
+      <dt><span data-l="en">Code</span><span data-l="fr">Code</span></dt>
+      <dd><span data-l="en">Python, ~42,000 lines, 240+ automated tests</span><span data-l="fr">Python, ~42 000 lignes, plus de 240 tests automatisés</span></dd>
+      <dt><span data-l="en">Sources</span><span data-l="fr">Sources</span></dt>
+      <dd>Yahoo Finance, SEC EDGAR, <span data-l="en">ECB, BIS</span><span data-l="fr">BCE, BRI</span>, New York Fed, Bundesbank, <span data-l="en">OECD</span><span data-l="fr">OCDE</span>, FRED</dd>
+    </dl>
+  </aside>
 </section>
 
-<!-- ============================================================ fonctions -->
-<section class="section" id="features" aria-labelledby="features-h">
-  <h2 id="features-h" class="section-h"><span data-l="en">What it shows</span><span data-l="fr">Ce que montre l'application</span></h2>
-
-  <article class="feature">
-    <div class="feature-text">
-      <h3><span data-l="en">Open every company's sheet, and its official reports</span><span data-l="fr">Ouvrir la fiche de chaque société, et ses rapports officiels</span></h3>
-      <p><span data-l="en">The stock sheet brings together the price chart with results and dividend dates, the analyst consensus (number of analysts, recommendation, low, average and high target) and the revisions of earnings forecasts over one and three months.</span><span data-l="fr">La fiche titre réunit le graphique de cours avec les dates de résultats et de dividendes, le consensus des analystes (nombre d'analystes, recommandation, objectif bas, moyen et haut) et les révisions des prévisions de bénéfices sur un et trois mois.</span></p>
-      <p><span data-l="en">A Reports line links straight to the latest annual report filed with the SEC (10-K, or 20-F for foreign issuers), the latest official report of any kind, and the full list of filings. For companies outside the SEC, it opens their investor relations page.</span><span data-l="fr">Une ligne Rapports mène directement au dernier rapport annuel déposé auprès de la SEC (10-K, ou 20-F pour les émetteurs étrangers), au dernier rapport officiel quel qu'il soit et à la liste complète des dépôts. Pour les sociétés hors SEC, elle ouvre leur page relations investisseurs.</span></p>
-    </div>
-    <figure class="exhibit">
-      <button type="button" class="shot-btn" data-zoom="02_stock_sheet" aria-label="Enlarge"><img data-shot="02_stock_sheet" src="images/02_stock_sheet.webp" width="1440" height="880" loading="lazy" alt="Stock sheet of PepsiCo: links to the latest 10-K and 10-Q, analyst consensus and a five-year price chart with the analyst target, results and ex-dividend dates"></button>
-      <figcaption><p class="fig-title"><b><span data-l="en">Figure 2.</span><span data-l="fr">Figure 2.</span></b> <span data-l="en">Stock sheet: PepsiCo, with its latest 10-K and 10-Q one click away.</span><span data-l="fr">Fiche titre&nbsp;: PepsiCo, avec ses derniers 10-K et 10-Q à un clic.</span></p></figcaption>
-    </figure>
-  </article>
-
-  <article class="feature">
-    <div class="feature-text">
-      <h3><span data-l="en">Compare a company with its peers</span><span data-l="fr">Comparer une société à ses pairs</span></h3>
-      <p><span data-l="en">Peers are suggested from the same industry and region. Returns are rebased to 100 over the period of your choice, side by side with volatility, maximum drawdown, multiples and margins.</span><span data-l="fr">Les pairs sont suggérés dans la même industrie et la même région. Les performances sont rebasées à 100 sur la période de votre choix, à côté de la volatilité, de la perte maximale, des multiples et des marges.</span></p>
-      <p><span data-l="en">Insider transactions, institutional holders and the dividend history sit in the next tab.</span><span data-l="fr">Les transactions des dirigeants, les investisseurs institutionnels et l'historique des dividendes sont dans l'onglet suivant.</span></p>
-    </div>
-    <figure class="exhibit">
-      <button type="button" class="shot-btn" data-zoom="03_compare" aria-label="Enlarge"><img data-shot="03_compare" src="images/03_compare.webp" width="1440" height="880" loading="lazy" alt="Compare tab: PepsiCo against Coca-Cola, Coca-Cola Europacific and Keurig Dr Pepper, returns rebased to 100 and a table of statistics"></button>
-      <figcaption><p class="fig-title"><b><span data-l="en">Figure 3.</span><span data-l="fr">Figure 3.</span></b> <span data-l="en">Compare: PepsiCo and three suggested peers over one year.</span><span data-l="fr">Comparer&nbsp;: PepsiCo et trois pairs suggérés sur un an.</span></p></figcaption>
-    </figure>
-  </article>
-
-  <article class="feature">
-    <div class="feature-text">
-      <h3><span data-l="en">Read the market regime and the cycle</span><span data-l="fr">Lire le régime de marché et le cycle</span></h3>
-      <p><span data-l="en">About thirty market and macro signals (yield curve, credit spreads, volatility, breadth, factor leadership) are grouped into five families and scored. The regime with the most support is suggested, never imposed, and each signal explains in plain words what it is and what it says today.</span><span data-l="fr">Une trentaine de signaux de marché et macroéconomiques (courbe des taux, spreads de crédit, volatilité, largeur du marché, facteurs en tête) sont regroupés en cinq familles et notés. Le régime le plus soutenu est suggéré, jamais imposé, et chaque signal explique en mots simples ce qu'il est et ce qu'il dit aujourd'hui.</span></p>
-      <p><span data-l="en">The OECD leading indicators place each economy in its phase of the cycle.</span><span data-l="fr">Les indicateurs avancés de l'OCDE placent chaque économie dans sa phase du cycle.</span></p>
-    </div>
-    <figure class="exhibit">
-      <button type="button" class="shot-btn" data-zoom="06_market_regime" aria-label="Enlarge"><img data-shot="06_market_regime" src="images/06_market_regime.webp" width="1440" height="880" loading="lazy" alt="Market regime tab with a gauge, five signal family cards and a signal table"></button>
-      <figcaption><p class="fig-title"><b><span data-l="en">Figure 4.</span><span data-l="fr">Figure 4.</span></b> <span data-l="en">Market regime tab: gauge, signal families and the history of each signal.</span><span data-l="fr">Onglet Régime de marché&nbsp;: jauge, familles de signaux et historique de chaque signal.</span></p></figcaption>
-    </figure>
-  </article>
-
-  <article class="feature">
-    <div class="feature-text">
-      <h3><span data-l="en">Follow rates, currencies and commodities</span><span data-l="fr">Suivre les taux, les devises et les matières premières</span></h3>
-      <p><span data-l="en">Policy rates, €STR, government yield curves and market-implied rate expectations from the ECB, the BIS, the New York Fed and the Bundesbank. Live exchange rates are checked against the ECB reference before use; commodity futures complete the picture.</span><span data-l="fr">Taux directeurs, €STR, courbes des taux souverains et anticipations de taux implicites, issus de la BCE, de la BRI, de la Fed de New York et de la Bundesbank. Les taux de change en direct sont contrôlés par rapport à la référence BCE avant usage&nbsp;; les contrats à terme sur matières premières complètent le tableau.</span></p>
-    </div>
-    <figure class="exhibit">
-      <button type="button" class="shot-btn" data-zoom="21_rates" aria-label="Enlarge"><img data-shot="21_rates" src="images/21_rates.webp" width="1440" height="880" loading="lazy" alt="Rates tab with key policy rates and government yield curves"></button>
-      <figcaption><p class="fig-title"><b><span data-l="en">Figure 5.</span><span data-l="fr">Figure 5.</span></b> <span data-l="en">Rates tab: key rates and yield curves.</span><span data-l="fr">Onglet Taux&nbsp;: taux directeurs et courbes.</span></p></figcaption>
-    </figure>
-  </article>
-
-  <article class="feature">
-    <div class="feature-text">
-      <h3><span data-l="en">Track your own portfolio</span><span data-l="fr">Suivre votre propre portefeuille</span></h3>
-      <p><span data-l="en">Rebuilt from the transactions kept in Excel: time-weighted return, dividends net of withholding tax by country, comparison with a benchmark, attribution by sector, volatility, drawdown, Sharpe ratio, tracking error and value at risk.</span><span data-l="fr">Reconstruit à partir des transactions tenues dans Excel&nbsp;: rendement pondéré par le temps, dividendes nets de retenue à la source par pays, comparaison avec un indice, attribution par secteur, volatilité, perte maximale, ratio de Sharpe, tracking error et valeur à risque.</span></p>
-      <p><span data-l="en">Portfolios can be created, imported and exported, and are broken down by asset class, zone, sector and currency. They stay on your computer.</span><span data-l="fr">Les portefeuilles se créent, s'importent et s'exportent, avec leur répartition par classe d'actifs, zone, secteur et devise. Ils restent sur votre ordinateur.</span></p>
-    </div>
-    <figure class="exhibit">
-      <button type="button" class="shot-btn" data-zoom="05_performance" aria-label="Enlarge"><img data-shot="05_performance" src="images/05_performance.webp" width="1440" height="880" loading="lazy" alt="Performance tab: value of an example portfolio against the MSCI World benchmark, with a table of return and risk statistics"></button>
-      <figcaption><p class="fig-title"><b><span data-l="en">Figure 6.</span><span data-l="fr">Figure 6.</span></b> <span data-l="en">Performance tab: an example portfolio of twelve stocks against the MSCI World.</span><span data-l="fr">Onglet Performance&nbsp;: un portefeuille d'exemple de douze titres face au MSCI World.</span></p>
-        <p class="src"><span data-l="en">Fictitious transactions, real market prices.</span><span data-l="fr">Transactions fictives, cours de marché réels.</span></p></figcaption>
-    </figure>
-  </article>
-
-  <article class="feature">
-    <div class="feature-text">
-      <h3><span data-l="en">Add bonds and cryptocurrencies</span><span data-l="fr">Ajouter obligations et cryptomonnaies</span></h3>
-      <p><span data-l="en">Bond ETFs and individual bonds, with yield to maturity, duration, convexity, accrued coupon and spread over the government curve. The terms of a bond can be pre-filled from its ISIN, using the ECB list of eligible marketable assets.</span><span data-l="fr">ETF obligataires et obligations en direct, avec rendement à maturité, duration, convexité, coupon couru et spread sur la courbe souveraine. Les caractéristiques d'une obligation se pré-remplissent depuis son ISIN, grâce à la liste BCE des actifs négociables éligibles.</span></p>
-      <p><span data-l="en">Cryptocurrencies are shown in the currency of your choice, converted with the exchange-rate history when no direct quote exists.</span><span data-l="fr">Les cryptomonnaies s'affichent dans la devise de votre choix, converties avec l'historique de change quand aucune cotation directe n'existe.</span></p>
-    </div>
-    <figure class="exhibit">
-      <button type="button" class="shot-btn" data-zoom="25_crypto" aria-label="Enlarge"><img data-shot="25_crypto" src="images/25_crypto.webp" width="1440" height="880" loading="lazy" alt="Crypto tab with a table of cryptocurrencies, a price chart and a fact sheet"></button>
-      <figcaption><p class="fig-title"><b><span data-l="en">Figure 7.</span><span data-l="fr">Figure 7.</span></b> <span data-l="en">Crypto tab: returns, volatility, drawdown and market data.</span><span data-l="fr">Onglet Crypto&nbsp;: performances, volatilité, perte maximale et données de marché.</span></p></figcaption>
-    </figure>
-  </article>
-
-  <article class="feature">
-    <div class="feature-text">
-      <h3><span data-l="en">Keep up with news and calendars</span><span data-l="fr">Suivre l'actualité et les calendriers</span></h3>
-      <p><span data-l="en">Headlines from a dozen publishers and central banks, tagged by stock, with the earnings and economic calendars. For paywalled publishers (FT, Bloomberg, WSJ, Reuters and others) only the headline, a short summary and the link are kept: no article is ever downloaded.</span><span data-l="fr">Les titres d'une douzaine d'éditeurs et de banques centrales, reliés aux actions concernées, avec les calendriers de résultats et économique. Pour les éditeurs payants (FT, Bloomberg, WSJ, Reuters et d'autres), seuls le titre, un court résumé et le lien sont conservés&nbsp;: aucun article n'est jamais téléchargé.</span></p>
-    </div>
-    <figure class="exhibit">
-      <button type="button" class="shot-btn" data-zoom="13_news" aria-label="Enlarge"><img data-shot="13_news" src="images/13_news.webp" width="1440" height="880" loading="lazy" alt="News tab with a list of headlines by publisher"></button>
-      <figcaption><p class="fig-title"><b><span data-l="en">Figure 8.</span><span data-l="fr">Figure 8.</span></b> <span data-l="en">News tab: live headlines.</span><span data-l="fr">Onglet Actualités&nbsp;: titres en direct.</span></p></figcaption>
-    </figure>
-  </article>
-
-  <article class="feature">
-    <div class="feature-text">
-      <h3><span data-l="en">Refresh everything with one click</span><span data-l="fr">Tout rafraîchir en un clic</span></h3>
-      <p><span data-l="en">A daily run updates prices and returns in about 30 seconds thanks to incremental caches, and writes an Excel report. A weekly run downloads the fundamentals, the analyst consensus and the earnings revisions.</span><span data-l="fr">Un run quotidien met à jour les cours et les performances en une trentaine de secondes grâce aux caches incrémentaux, et écrit un rapport Excel. Un run hebdomadaire télécharge les fondamentaux, le consensus des analystes et les révisions de bénéfices.</span></p>
-      <p><span data-l="en">At startup the app shows the date of its data and offers to run what is out of date, one run after another.</span><span data-l="fr">Au démarrage, l'application indique la date de ses données et propose de lancer ce qui n'est plus à jour, les runs s'enchaînant les uns après les autres.</span></p>
-    </div>
-    <figure class="exhibit">
-      <button type="button" class="shot-btn" data-zoom="09_runs" aria-label="Enlarge"><img data-shot="09_runs" src="images/09_runs.webp" width="1440" height="880" loading="lazy" alt="Runs tab with buttons for the daily and weekly runs and the log of the last run"></button>
-      <figcaption><p class="fig-title"><b><span data-l="en">Figure 9.</span><span data-l="fr">Figure 9.</span></b> <span data-l="en">Runs tab: each run, its last completion and the log.</span><span data-l="fr">Onglet Runs&nbsp;: chaque run, sa dernière exécution et le journal.</span></p></figcaption>
-    </figure>
-  </article>
+<!-- ============================================================ ce que le projet montre -->
+<section class="section" id="proof" aria-labelledby="proof-h">
+  <h2 id="proof-h" class="section-h"><span data-l="en">What the project shows</span><span data-l="fr">Ce que montre ce projet</span></h2>
+  <div class="proof">
+    <article>
+      <h3><span data-l="en">Knowing what to look at</span><span data-l="fr">Savoir quoi regarder</span></h3>
+      <p><span data-l="en">Fundamentals and valuation multiples, analyst consensus and earnings revisions, the latest 10-K or 20-F one click away. Portfolio returns and risk the way an asset manager reports them: time-weighted return, Sharpe ratio, tracking error, value at risk.</span><span data-l="fr">Fondamentaux et multiples de valorisation, consensus des analystes et révisions de bénéfices, dernier 10-K ou 20-F à un clic. Performance et risque d'un portefeuille présentés comme en gestion d'actifs&nbsp;: rendement pondéré par le temps, ratio de Sharpe, tracking error, valeur à risque.</span></p>
+    </article>
+    <article>
+      <h3><span data-l="en">Knowing how to build it</span><span data-l="fr">Savoir le construire</span></h3>
+      <p><span data-l="en">A data pipeline over eight public sources, incremental caches that refresh 870 stocks in about 30 seconds, and a desktop interface in PySide6. More than 240 automated tests, including a visit of every tab in both languages.</span><span data-l="fr">Une chaîne de données sur huit sources publiques, des caches incrémentaux qui mettent à jour 870 actions en une trentaine de secondes, et une interface de bureau en PySide6. Plus de 240 tests automatisés, dont une visite de chaque onglet dans les deux langues.</span></p>
+    </article>
+    <article>
+      <h3><span data-l="en">Knowing how to ship it</span><span data-l="fr">Savoir le livrer</span></h3>
+      <p><span data-l="en">A Windows executable tested on an empty folder, user guides in English and French, and a shared edition that contains no personal data, checked by a test. I use it every day.</span><span data-l="fr">Un exécutable Windows testé sur un dossier vide, des guides utilisateur en anglais et en français, et une édition partagée qui ne contient aucune donnée personnelle, ce qu'un test vérifie. Je m'en sers tous les jours.</span></p>
+    </article>
+  </div>
 </section>
 
-<!-- ============================================================ galerie -->
-<section class="section" id="screens" aria-labelledby="screens-h">
-  <h2 id="screens-h" class="section-h"><span data-l="en">More screens</span><span data-l="fr">Autres écrans</span></h2>
-  <p class="lede"><span data-l="en">Click a screen to enlarge it. The language and theme buttons at the top also switch the screenshots; the dark version is the app's Maison Barra theme.</span><span data-l="fr">Cliquez sur un écran pour l'agrandir. Les boutons de langue et de thème en haut changent aussi les captures&nbsp;; la version sombre est le thème Maison Barra de l'application.</span></p>
+<!-- ============================================================ visite -->
+<section class="section" id="tour" aria-labelledby="tour-h">
+  <h2 id="tour-h" class="section-h"><span data-l="en">A tour of the application</span><span data-l="fr">Visite de l'application</span></h2>
+  <p class="lede"><span data-l="en">Pick a tab, as in the app. Click a screen to enlarge it; the language and theme buttons at the top also switch the screenshots.</span><span data-l="fr">Choisissez un onglet, comme dans l'application. Cliquez sur un écran pour l'agrandir&nbsp;; les boutons de langue et de thème en haut changent aussi les captures.</span></p>
+
+  <div class="window">
+    <div class="tabs" role="tablist" aria-label="Tabs">
+      <button type="button" role="tab" id="t-sheet" aria-controls="p-sheet" aria-selected="true"><span data-l="en">Stock sheet</span><span data-l="fr">Fiche titre</span></button>
+      <button type="button" role="tab" id="t-compare" aria-controls="p-compare" aria-selected="false" tabindex="-1"><span data-l="en">Compare</span><span data-l="fr">Comparer</span></button>
+      <button type="button" role="tab" id="t-regime" aria-controls="p-regime" aria-selected="false" tabindex="-1"><span data-l="en">Market regime</span><span data-l="fr">Régime de marché</span></button>
+      <button type="button" role="tab" id="t-rates" aria-controls="p-rates" aria-selected="false" tabindex="-1"><span data-l="en">Rates</span><span data-l="fr">Taux</span></button>
+      <button type="button" role="tab" id="t-perf" aria-controls="p-perf" aria-selected="false" tabindex="-1"><span data-l="en">Portfolio</span><span data-l="fr">Portefeuille</span></button>
+      <button type="button" role="tab" id="t-crypto" aria-controls="p-crypto" aria-selected="false" tabindex="-1"><span data-l="en">Bonds and crypto</span><span data-l="fr">Obligations et crypto</span></button>
+      <button type="button" role="tab" id="t-news" aria-controls="p-news" aria-selected="false" tabindex="-1"><span data-l="en">News</span><span data-l="fr">Actualités</span></button>
+      <button type="button" role="tab" id="t-runs" aria-controls="p-runs" aria-selected="false" tabindex="-1"><span data-l="en">Runs</span><span data-l="fr">Runs</span></button>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p-sheet" aria-labelledby="t-sheet">
+      <div class="panel-text">
+        <h3><span data-l="en">Every company's sheet, and its official reports</span><span data-l="fr">La fiche de chaque société, et ses rapports officiels</span></h3>
+        <p><span data-l="en">Price chart with results and dividend dates, the analyst consensus (number of analysts, recommendation, low, average and high target) and the revisions of earnings forecasts over one and three months.</span><span data-l="fr">Graphique de cours avec dates de résultats et de dividendes, consensus des analystes (nombre, recommandation, objectif bas, moyen et haut) et révisions des prévisions de bénéfices sur un et trois mois.</span></p>
+        <p class="aside"><span data-l="en">A Reports line opens the latest 10-K (or 20-F), the latest filing of any kind, or the investor relations page for companies outside the SEC.</span><span data-l="fr">Une ligne Rapports ouvre le dernier 10-K (ou 20-F), le dernier dépôt quel qu'il soit, ou la page relations investisseurs des sociétés hors SEC.</span></p>
+      </div>
+      <button type="button" class="shot-btn" data-zoom="02_stock_sheet"><img data-shot="02_stock_sheet" src="images/02_stock_sheet.webp" width="1440" height="880" loading="lazy" alt="Stock sheet of PepsiCo: links to the latest 10-K and 10-Q, analyst consensus and a five-year price chart"></button>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p-compare" aria-labelledby="t-compare">
+      <div class="panel-text">
+        <h3><span data-l="en">A company against its peers</span><span data-l="fr">Une société face à ses pairs</span></h3>
+        <p><span data-l="en">Peers are suggested from the same industry and region. Returns are rebased to 100 over the period of your choice, side by side with volatility, maximum drawdown, multiples and margins.</span><span data-l="fr">Les pairs sont suggérés dans la même industrie et la même région. Les performances sont rebasées à 100 sur la période choisie, à côté de la volatilité, de la perte maximale, des multiples et des marges.</span></p>
+        <p class="aside"><span data-l="en">Insider transactions, institutional holders and the dividend history sit in the next tab.</span><span data-l="fr">Transactions des dirigeants, investisseurs institutionnels et historique des dividendes sont dans l'onglet suivant.</span></p>
+      </div>
+      <button type="button" class="shot-btn" data-zoom="03_compare"><img data-shot="03_compare" src="images/03_compare.webp" width="1440" height="880" loading="lazy" alt="Compare tab: PepsiCo against three suggested peers, returns rebased to 100 and a table of statistics"></button>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p-regime" aria-labelledby="t-regime">
+      <div class="panel-text">
+        <h3><span data-l="en">The market regime and the cycle</span><span data-l="fr">Le régime de marché et le cycle</span></h3>
+        <p><span data-l="en">About thirty signals (yield curve, credit spreads, volatility, breadth, factor leadership) are grouped into five families and scored. The regime with the most support is suggested, never imposed, and each signal says in plain words what it measures and what it says today.</span><span data-l="fr">Une trentaine de signaux (courbe des taux, spreads de crédit, volatilité, largeur du marché, facteurs en tête) sont regroupés en cinq familles et notés. Le régime le plus soutenu est suggéré, jamais imposé, et chaque signal dit en mots simples ce qu'il mesure et ce qu'il indique aujourd'hui.</span></p>
+        <p class="aside"><span data-l="en">The OECD leading indicators place each economy in its phase of the cycle.</span><span data-l="fr">Les indicateurs avancés de l'OCDE placent chaque économie dans sa phase du cycle.</span></p>
+      </div>
+      <button type="button" class="shot-btn" data-zoom="06_market_regime"><img data-shot="06_market_regime" src="images/06_market_regime.webp" width="1440" height="880" loading="lazy" alt="Market regime tab with a gauge, five signal family cards and a signal table"></button>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p-rates" aria-labelledby="t-rates">
+      <div class="panel-text">
+        <h3><span data-l="en">Rates, currencies and commodities</span><span data-l="fr">Taux, devises et matières premières</span></h3>
+        <p><span data-l="en">Policy rates, €STR, government yield curves and market-implied rate expectations from the ECB, the BIS, the New York Fed and the Bundesbank.</span><span data-l="fr">Taux directeurs, €STR, courbes souveraines et anticipations de taux implicites, issus de la BCE, de la BRI, de la Fed de New York et de la Bundesbank.</span></p>
+        <p class="aside"><span data-l="en">Live exchange rates are checked against the ECB reference before use.</span><span data-l="fr">Les taux de change en direct sont contrôlés par rapport à la référence BCE avant usage.</span></p>
+      </div>
+      <button type="button" class="shot-btn" data-zoom="21_rates"><img data-shot="21_rates" src="images/21_rates.webp" width="1440" height="880" loading="lazy" alt="Rates tab with key policy rates and government yield curves"></button>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p-perf" aria-labelledby="t-perf">
+      <div class="panel-text">
+        <h3><span data-l="en">Portfolio return and risk</span><span data-l="fr">Performance et risque d'un portefeuille</span></h3>
+        <p><span data-l="en">Rebuilt from the transactions kept in Excel: time-weighted return, dividends net of withholding tax by country, comparison with a benchmark, attribution by sector, volatility, drawdown, Sharpe ratio, tracking error and value at risk.</span><span data-l="fr">Reconstruit à partir des transactions tenues dans Excel&nbsp;: rendement pondéré par le temps, dividendes nets de retenue à la source par pays, comparaison à un indice, attribution sectorielle, volatilité, perte maximale, ratio de Sharpe, tracking error et valeur à risque.</span></p>
+        <p class="aside"><span data-l="en">The screenshot shows an example portfolio: fictitious transactions, real market prices.</span><span data-l="fr">La capture montre un portefeuille d'exemple&nbsp;: transactions fictives, cours de marché réels.</span></p>
+      </div>
+      <button type="button" class="shot-btn" data-zoom="05_performance"><img data-shot="05_performance" src="images/05_performance.webp" width="1440" height="880" loading="lazy" alt="Performance tab: an example portfolio against the MSCI World, with a table of return and risk statistics"></button>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p-crypto" aria-labelledby="t-crypto">
+      <div class="panel-text">
+        <h3><span data-l="en">Bonds and cryptocurrencies</span><span data-l="fr">Obligations et cryptomonnaies</span></h3>
+        <p><span data-l="en">Bond ETFs and individual bonds with yield to maturity, duration, convexity, accrued coupon and spread over the government curve. A bond's terms can be pre-filled from its ISIN, using the ECB list of eligible assets.</span><span data-l="fr">ETF obligataires et obligations en direct, avec rendement à maturité, duration, convexité, coupon couru et spread sur la courbe souveraine. Les caractéristiques d'une obligation se pré-remplissent depuis son ISIN, grâce à la liste BCE des actifs éligibles.</span></p>
+        <p class="aside"><span data-l="en">Cryptocurrencies are shown in the currency of your choice.</span><span data-l="fr">Les cryptomonnaies s'affichent dans la devise de votre choix.</span></p>
+      </div>
+      <button type="button" class="shot-btn" data-zoom="25_crypto"><img data-shot="25_crypto" src="images/25_crypto.webp" width="1440" height="880" loading="lazy" alt="Crypto tab with a table of cryptocurrencies, a price chart and a fact sheet"></button>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p-news" aria-labelledby="t-news">
+      <div class="panel-text">
+        <h3><span data-l="en">News and calendars</span><span data-l="fr">Actualités et calendriers</span></h3>
+        <p><span data-l="en">Headlines from a dozen publishers and central banks, tagged by stock, with the earnings and economic calendars.</span><span data-l="fr">Les titres d'une douzaine d'éditeurs et de banques centrales, reliés aux actions concernées, avec les calendriers de résultats et économique.</span></p>
+        <p class="aside"><span data-l="en">For paywalled publishers, only the headline, a short summary and the link are kept. No article is ever downloaded.</span><span data-l="fr">Pour les éditeurs payants, seuls le titre, un court résumé et le lien sont conservés. Aucun article n'est jamais téléchargé.</span></p>
+      </div>
+      <button type="button" class="shot-btn" data-zoom="13_news"><img data-shot="13_news" src="images/13_news.webp" width="1440" height="880" loading="lazy" alt="News tab with a list of headlines by publisher"></button>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p-runs" aria-labelledby="t-runs">
+      <div class="panel-text">
+        <h3><span data-l="en">Everything refreshed in one click</span><span data-l="fr">Tout rafraîchi en un clic</span></h3>
+        <p><span data-l="en">A daily run updates prices and returns in about 30 seconds and writes an Excel report. A weekly run downloads the fundamentals, the analyst consensus and the earnings revisions.</span><span data-l="fr">Un run quotidien met à jour cours et performances en une trentaine de secondes et écrit un rapport Excel. Un run hebdomadaire télécharge les fondamentaux, le consensus et les révisions de bénéfices.</span></p>
+        <p class="aside"><span data-l="en">At startup the app shows the date of its data and offers to run what is out of date.</span><span data-l="fr">Au démarrage, l'application indique la date de ses données et propose de lancer ce qui n'est plus à jour.</span></p>
+      </div>
+      <button type="button" class="shot-btn" data-zoom="09_runs"><img data-shot="09_runs" src="images/09_runs.webp" width="1440" height="880" loading="lazy" alt="Runs tab with buttons for the daily and weekly runs and the log of the last run"></button>
+    </div>
+  </div>
+
+  <h3 class="sub-h"><span data-l="en">More screens</span><span data-l="fr">Autres écrans</span></h3>
   <ul class="gallery">
-    <li><button type="button" data-zoom="15_detached"><img data-shot="15_detached" src="images/15_detached.webp" width="1440" height="880" loading="lazy" alt=""><span data-l="en">The stock sheet detached into its own window</span><span data-l="fr">La fiche titre détachée dans sa propre fenêtre</span></button></li>
+    <li><button type="button" data-zoom="15_detached"><img data-shot="15_detached" src="images/15_detached.webp" width="1440" height="880" loading="lazy" alt=""><span data-l="en">The stock sheet in its own window</span><span data-l="fr">La fiche titre dans sa propre fenêtre</span></button></li>
     <li><button type="button" data-zoom="18_regime_history"><img data-shot="18_regime_history" src="images/18_regime_history.webp" width="1440" height="880" loading="lazy" alt=""><span data-l="en">History of the regime signals</span><span data-l="fr">Historique des signaux de régime</span></button></li>
     <li><button type="button" data-zoom="22_cycle"><img data-shot="22_cycle" src="images/22_cycle.webp" width="1440" height="880" loading="lazy" alt=""><span data-l="en">Economic cycle from OECD indicators</span><span data-l="fr">Cycle économique d'après l'OCDE</span></button></li>
     <li><button type="button" data-zoom="17_currencies"><img data-shot="17_currencies" src="images/17_currencies.webp" width="1440" height="880" loading="lazy" alt=""><span data-l="en">Exchange rates checked against the ECB</span><span data-l="fr">Taux de change contrôlés par la BCE</span></button></li>
-    <li><button type="button" data-zoom="20_commodities"><img data-shot="20_commodities" src="images/20_commodities.webp" width="1440" height="880" loading="lazy" alt=""><span data-l="en">Commodity futures</span><span data-l="fr">Matières premières</span></button></li>
     <li><button type="button" data-zoom="24_bonds"><img data-shot="24_bonds" src="images/24_bonds.webp" width="1440" height="880" loading="lazy" alt=""><span data-l="en">Bond ETFs: yield, duration, rating</span><span data-l="fr">ETF obligataires&nbsp;: rendement, duration, notation</span></button></li>
+    <li><button type="button" data-zoom="20_commodities"><img data-shot="20_commodities" src="images/20_commodities.webp" width="1440" height="880" loading="lazy" alt=""><span data-l="en">Commodity futures</span><span data-l="fr">Matières premières</span></button></li>
     <li><button type="button" data-zoom="14_calendar"><img data-shot="14_calendar" src="images/14_calendar.webp" width="1440" height="880" loading="lazy" alt=""><span data-l="en">Earnings calendar</span><span data-l="fr">Calendrier des résultats</span></button></li>
     <li><button type="button" data-zoom="23_economic_calendar"><img data-shot="23_economic_calendar" src="images/23_economic_calendar.webp" width="1440" height="880" loading="lazy" alt=""><span data-l="en">Economic calendar</span><span data-l="fr">Calendrier économique</span></button></li>
-    <li><button type="button" data-zoom="07_universe"><img data-shot="07_universe" src="images/07_universe.webp" width="1440" height="880" loading="lazy" alt=""><span data-l="en">Universe management</span><span data-l="fr">Gestion de l'univers</span></button></li>
   </ul>
 </section>
 
-<!-- ============================================================ fonctionnement -->
-<section class="section" id="how" aria-labelledby="how-h">
-  <h2 id="how-h" class="section-h"><span data-l="en">How it works</span><span data-l="fr">Fonctionnement</span></h2>
-  <p class="lede"><span data-l="en">No server and no database: the runs download and compute, write files, and the desktop app reads them.</span><span data-l="fr">Ni serveur ni base de données&nbsp;: les runs téléchargent et calculent, écrivent des fichiers, et l'application de bureau les lit.</span></p>
+<!-- ============================================================ construction -->
+<section class="section" id="build" aria-labelledby="build-h">
+  <h2 id="build-h" class="section-h"><span data-l="en">How it is built</span><span data-l="fr">Comment c'est construit</span></h2>
+  <p class="lede"><span data-l="en">No server and no database: scheduled runs download and compute, write files, and the desktop app reads them.</span><span data-l="fr">Ni serveur ni base de données&nbsp;: des runs téléchargent et calculent, écrivent des fichiers, et l'application de bureau les lit.</span></p>
 
-  <figure class="flow" aria-labelledby="flow-cap">
-    <ol class="flow-steps">
-      <li>
-        <h3><span data-l="en">Sources</span><span data-l="fr">Sources</span></h3>
-        <ul>
-          <li><span data-l="en">Yahoo Finance: prices, fundamentals, consensus, news</span><span data-l="fr">Yahoo Finance&nbsp;: cours, fondamentaux, consensus, actualités</span></li>
-          <li><span data-l="en">SEC EDGAR: annual and quarterly filings</span><span data-l="fr">SEC EDGAR&nbsp;: rapports annuels et trimestriels</span></li>
-          <li><span data-l="en">ECB, BIS, New York Fed, Bundesbank, OECD, FRED</span><span data-l="fr">BCE, BRI, Fed de New York, Bundesbank, OCDE, FRED</span></li>
-          <li><span data-l="en">Publishers' RSS feeds, ECB list of eligible bonds</span><span data-l="fr">Flux RSS des éditeurs, liste BCE des obligations éligibles</span></li>
-        </ul>
-      </li>
-      <li>
-        <h3><span data-l="en">Runs</span><span data-l="fr">Runs</span></h3>
-        <ul>
-          <li><span data-l="en">Daily: prices, returns, Excel report (~30 s)</span><span data-l="fr">Quotidien&nbsp;: cours, performances, rapport Excel (~30 s)</span></li>
-          <li><span data-l="en">Weekly: fundamentals, consensus, revisions (30–45 min)</span><span data-l="fr">Hebdomadaire&nbsp;: fondamentaux, consensus, révisions (30–45 min)</span></li>
-        </ul>
-      </li>
-      <li>
-        <h3><span data-l="en">Files</span><span data-l="fr">Fichiers</span></h3>
-        <ul>
-          <li><span data-l="en">Incremental Parquet caches, JSON</span><span data-l="fr">Caches Parquet incrémentaux, JSON</span></li>
-          <li><span data-l="en">Daily and weekly Excel reports</span><span data-l="fr">Rapports Excel quotidien et hebdomadaire</span></li>
-        </ul>
-      </li>
-      <li>
-        <h3><span data-l="en">Application</span><span data-l="fr">Application</span></h3>
-        <ul>
-          <li><span data-l="en">14 tabs reading the files</span><span data-l="fr">14 onglets qui lisent les fichiers</span></li>
-          <li><span data-l="en">Live quotes, rates, FX, filings and news in background threads</span><span data-l="fr">Cours, taux, change, rapports et actualités en direct, en tâche de fond</span></li>
-          <li><span data-l="en">Portfolios and alerts saved locally</span><span data-l="fr">Portefeuilles et alertes enregistrés en local</span></li>
-        </ul>
-      </li>
-    </ol>
-    <figcaption id="flow-cap"><p class="fig-title"><b><span data-l="en">Figure 10.</span><span data-l="fr">Figure 10.</span></b> <span data-l="en">From the sources to the screen.</span><span data-l="fr">Des sources à l'écran.</span></p></figcaption>
-  </figure>
+  <ol class="flow">
+    <li>
+      <h3><span data-l="en">Sources</span><span data-l="fr">Sources</span></h3>
+      <p><span data-l="en">Yahoo Finance, SEC EDGAR, ECB, BIS, New York Fed, Bundesbank, OECD, FRED, publishers' RSS feeds</span><span data-l="fr">Yahoo Finance, SEC EDGAR, BCE, BRI, Fed de New York, Bundesbank, OCDE, FRED, flux RSS des éditeurs</span></p>
+    </li>
+    <li>
+      <h3><span data-l="en">Runs</span><span data-l="fr">Runs</span></h3>
+      <p><span data-l="en">Daily: prices and returns in ~30 s. Weekly: fundamentals, consensus, revisions.</span><span data-l="fr">Quotidien&nbsp;: cours et performances en ~30 s. Hebdomadaire&nbsp;: fondamentaux, consensus, révisions.</span></p>
+    </li>
+    <li>
+      <h3><span data-l="en">Files</span><span data-l="fr">Fichiers</span></h3>
+      <p><span data-l="en">Incremental Parquet caches, JSON, daily and weekly Excel reports</span><span data-l="fr">Caches Parquet incrémentaux, JSON, rapports Excel quotidien et hebdomadaire</span></p>
+    </li>
+    <li>
+      <h3><span data-l="en">Application</span><span data-l="fr">Application</span></h3>
+      <p><span data-l="en">14 tabs reading the files; live quotes, rates and news in background threads</span><span data-l="fr">14 onglets qui lisent les fichiers&nbsp;; cours, taux et actualités en direct en tâche de fond</span></p>
+    </li>
+  </ol>
 
-  <div class="rules">
-    <h3><span data-l="en">Design rules, kept from day one</span><span data-l="fr">Règles de conception, tenues depuis le premier jour</span></h3>
-    <ul>
-      <li><span data-l="en">Network calls run in background threads, only for what is on screen, behind caches with freshness limits.</span><span data-l="fr">Les appels réseau tournent en tâche de fond, seulement pour ce qui est à l'écran, derrière des caches à durée de fraîcheur.</span></li>
-      <li><span data-l="en">Paywalled publishers: headline, short summary and link. Never the article.</span><span data-l="fr">Éditeurs payants&nbsp;: titre, court résumé et lien. Jamais l'article.</span></li>
-      <li><span data-l="en">The shared version contains no personal data (portfolios, transactions, notes, settings, keys), and a test checks it.</span><span data-l="fr">La version partagée ne contient aucune donnée personnelle (portefeuilles, transactions, notes, réglages, clés), et un test le vérifie.</span></li>
-      <li><span data-l="en">Tests run with their own settings profile and never touch real data.</span><span data-l="fr">Les tests tournent avec leur propre profil de réglages et ne touchent jamais aux vraies données.</span></li>
-      <li><span data-l="en">Every method cites its source, from the risk statistics to the regime signals.</span><span data-l="fr">Chaque méthode cite sa source, des statistiques de risque aux signaux de régime.</span></li>
-    </ul>
-  </div>
-</section>
-
-<!-- ============================================================ ingenierie -->
-<section class="section" id="engineering" aria-labelledby="eng-h">
-  <h2 id="eng-h" class="section-h"><span data-l="en">Engineering</span><span data-l="fr">Ingénierie</span></h2>
-  <div class="eng-grid">
+  <div class="build-grid">
     <div>
       <h3><span data-l="en">Stack</span><span data-l="fr">Technologies</span></h3>
       <dl class="stack">
         <dt><span data-l="en">Language</span><span data-l="fr">Langage</span></dt><dd>Python 3.13</dd>
         <dt><span data-l="en">Interface</span><span data-l="fr">Interface</span></dt><dd>PySide6 (Qt 6), QtCharts</dd>
         <dt><span data-l="en">Data</span><span data-l="fr">Données</span></dt><dd>pandas, numpy, yfinance, Parquet</dd>
-        <dt>Excel</dt><dd><span data-l="en">openpyxl: daily and weekly reports</span><span data-l="fr">openpyxl&nbsp;: rapports quotidien et hebdomadaire</span></dd>
-        <dt><span data-l="en">Packaging</span><span data-l="fr">Distribution</span></dt><dd><span data-l="en">PyInstaller Windows executable, tested on an empty folder</span><span data-l="fr">Exécutable Windows PyInstaller, testé sur un dossier vide</span></dd>
-        <dt><span data-l="en">Tests</span><span data-l="fr">Tests</span></dt><dd><span data-l="en">pytest, 91 tests, including a visit of every tab in both languages</span><span data-l="fr">pytest, 91 tests, dont une visite de chaque onglet dans les deux langues</span></dd>
+        <dt>Excel</dt><dd>openpyxl</dd>
+        <dt><span data-l="en">Packaging</span><span data-l="fr">Distribution</span></dt><dd><span data-l="en">PyInstaller Windows executable</span><span data-l="fr">Exécutable Windows PyInstaller</span></dd>
+        <dt><span data-l="en">Tests</span><span data-l="fr">Tests</span></dt><dd>pytest</dd>
       </dl>
     </div>
     <div>
-      <h3><span data-l="en">Practices</span><span data-l="fr">Pratiques</span></h3>
+      <h3><span data-l="en">Rules kept from day one</span><span data-l="fr">Règles tenues depuis le premier jour</span></h3>
       <ul class="plain">
-        <li><span data-l="en">Bilingual interface: about 3,600 translated strings, and a test that fails on any untranslated label.</span><span data-l="fr">Interface bilingue&nbsp;: environ 3 600 chaînes traduites, et un test qui échoue sur tout libellé non traduit.</span></li>
-        <li><span data-l="en">Incremental caches and atomic file writes, so the runs and the app can share the same files.</span><span data-l="fr">Caches incrémentaux et écritures atomiques, pour que les runs et l'application partagent les mêmes fichiers.</span></li>
-        <li><span data-l="en">One code base, two builds: this public edition and a private research edition, tested side by side.</span><span data-l="fr">Un seul code, deux versions&nbsp;: cette édition publique et une édition de recherche privée, testées côte à côte.</span></li>
-        <li><span data-l="en">User guides in English and French, with screenshots regenerated from the app itself.</span><span data-l="fr">Guides utilisateur en anglais et en français, avec des captures régénérées depuis l'application elle-même.</span></li>
-        <li><span data-l="en">Every source that fails leaves the app usable: the last cache is kept and the tab says why.</span><span data-l="fr">Toute source en panne laisse l'application utilisable&nbsp;: le dernier cache est gardé et l'onglet dit pourquoi.</span></li>
+        <li><span data-l="en">Every method cites its source, from the risk statistics to the regime signals.</span><span data-l="fr">Chaque méthode cite sa source, des statistiques de risque aux signaux de régime.</span></li>
+        <li><span data-l="en">A source that fails leaves the app usable: the last cache is kept and the tab says why.</span><span data-l="fr">Une source en panne laisse l'application utilisable&nbsp;: le dernier cache est gardé et l'onglet dit pourquoi.</span></li>
+        <li><span data-l="en">Network calls run in background threads, only for what is on screen.</span><span data-l="fr">Les appels réseau tournent en tâche de fond, seulement pour ce qui est à l'écran.</span></li>
+        <li><span data-l="en">About 3,600 translated strings, and a test that fails on any untranslated label.</span><span data-l="fr">Environ 3 600 chaînes traduites, et un test qui échoue sur tout libellé non traduit.</span></li>
+        <li><span data-l="en">Tests run with their own settings profile and never touch real data.</span><span data-l="fr">Les tests tournent avec leur propre profil de réglages et ne touchent jamais aux vraies données.</span></li>
       </ul>
     </div>
   </div>
@@ -327,9 +279,13 @@
 
 </main>
 
-<footer class="foot">
+<footer class="foot" id="contact">
   <div class="foot-in">
-    <p class="contact" data-contact hidden></p>
+    <div class="foot-cta" data-contact hidden>
+      <p class="foot-h"><span data-l="en">Interested in the project?</span><span data-l="fr">Le projet vous intéresse&nbsp;?</span></p>
+      <p><span data-l="en">I would be glad to show it live and walk you through the code.</span><span data-l="fr">Je serai heureux de vous le montrer en direct et de vous présenter le code.</span></p>
+      <a class="btn" data-linkedin hidden><span data-l="en">Contact me on LinkedIn</span><span data-l="fr">Me contacter sur LinkedIn</span></a>
+    </div>
     <p class="note"><span data-l="en">Maison Barra - Data terminal is a personal project for research and education, not investment advice. Screenshots come from the application; market data are from the sources named above.</span><span data-l="fr">Maison Barra - Data terminal est un projet personnel de recherche et d'apprentissage, pas un conseil en investissement. Les captures viennent de l'application&nbsp;; les données de marché, des sources citées plus haut.</span></p>
   </div>
 </footer>
