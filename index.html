@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Maison Barra - Data terminal — a market data terminal built end to end</title>
-<meta name="description" content="A Windows market data terminal built single-handedly in Python: about 870 listed companies with their fundamentals, analyst consensus and official reports, plus rates, currencies, bonds and a reading of the market regime.">
+<meta name="description" content="A Windows market data terminal built single-handedly in Python: listed companies from the United States, Europe and Japan with their fundamentals, analyst consensus and official reports, plus rates, currencies and bonds.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Maison Barra - Data terminal">
-<meta property="og:description" content="A market data terminal designed, coded, tested and shipped by one person: about 870 stocks, fundamentals, analyst consensus, official reports, rates, currencies and the market regime. English and French.">
+<meta property="og:description" content="A market data terminal designed, coded, tested and shipped by one person: equity analysis and portfolio monitoring, with fundamentals, analyst consensus, official reports, rates, currencies and bonds. English and French.">
 <meta property="og:url" content="https://rayzz73.github.io/stock-selection/">
 <meta property="og:image" content="https://rayzz73.github.io/stock-selection/images/og.png">
 <meta property="og:image:width" content="1200">
@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=2026-10-22">
+<link rel="stylesheet" href="style.css?v=2026-10-22b">
 <script>
   // avant l'affichage : langue et theme memorises (sinon ceux du navigateur), pour eviter un flash
   (function () {
@@ -70,12 +70,12 @@
   <div class="hero-text">
     <p class="byline" data-byline><span data-l="en">Personal project, 2026. Windows desktop application.</span><span data-l="fr">Projet personnel, 2026. Application de bureau Windows.</span></p>
     <h1>
-      <span data-l="en">870 companies, their fundamentals, the consensus and their official reports, in a tool I designed and coded.</span>
-      <span data-l="fr">870 sociétés, leurs fondamentaux, le consensus et leurs rapports officiels, dans un outil que j'ai conçu et codé.</span>
+      <span data-l="en">Analyse a company, measure a portfolio: an equity research terminal I designed and coded alone.</span>
+      <span data-l="fr">Analyser une société, mesurer un portefeuille&nbsp;: un terminal de recherche actions conçu et codé seul.</span>
     </h1>
     <p class="standfirst">
-      <span data-l="en">A Windows desktop app for equity analysis and portfolio monitoring, with rates, currencies, bonds and a reading of the market regime. Designed, coded, tested and shipped by one person, in Python.</span>
-      <span data-l="fr">Une application de bureau Windows pour l'analyse actions et le suivi de portefeuille, avec les taux, les devises, les obligations et une lecture du régime de marché. Conçue, codée, testée et livrée par une seule personne, en Python.</span>
+      <span data-l="en">A Windows desktop app for equity analysis and portfolio monitoring, with fundamentals, analyst consensus, official reports, rates, currencies and bonds. Designed, coded, tested and shipped by one person, in Python.</span>
+      <span data-l="fr">Une application de bureau Windows pour l'analyse actions et le suivi de portefeuille, avec les fondamentaux, le consensus des analystes, les rapports officiels, les taux, les devises et les obligations. Conçue, codée, testée et livrée par une seule personne, en Python.</span>
     </p>
     <p class="actions">
       <a class="btn" href="#tour"><span data-l="en">Take the tour</span><span data-l="fr">Visiter l'application</span></a>
@@ -85,10 +85,10 @@
 
   <figure class="hero-shot">
     <div class="glow" aria-hidden="true"></div>
-    <button type="button" class="shot-btn" data-zoom="02_stock_sheet">
-      <img data-shot="02_stock_sheet" src="images/02_stock_sheet.webp" width="1440" height="880" alt="Stock sheet of PepsiCo: links to the latest 10-K and 10-Q, analyst consensus, earnings revisions and a five-year price chart with results and ex-dividend dates" fetchpriority="high">
+    <button type="button" class="shot-btn" data-zoom="05_performance">
+      <img data-shot="05_performance" src="images/05_performance.webp" width="1440" height="880" alt="Performance tab: an example portfolio against the MSCI World, with time-weighted return, volatility, drawdown, Sharpe ratio, tracking error and value at risk" fetchpriority="high">
     </button>
-    <figcaption class="cap"><span data-l="en">The stock sheet of PepsiCo: price chart, analyst consensus, earnings revisions and the latest 10-K and 10-Q one click away.</span><span data-l="fr">La fiche titre de PepsiCo&nbsp;: graphique de cours, consensus des analystes, révisions de bénéfices, et les derniers 10-K et 10-Q à un clic.</span></figcaption>
+    <figcaption class="cap"><span data-l="en">An example portfolio against the MSCI World: time-weighted return, attribution and risk statistics. Fictitious transactions, real market prices.</span><span data-l="fr">Un portefeuille d'exemple face au MSCI World&nbsp;: rendement pondéré par le temps, attribution et statistiques de risque. Transactions fictives, cours de marché réels.</span></figcaption>
   </figure>
 
   <aside class="facts" aria-labelledby="facts-h">
@@ -96,7 +96,7 @@
     <dl>
       <div>
         <dt><span data-l="en">Universe</span><span data-l="fr">Univers</span></dt>
-        <dd><span data-l="en">~870 stocks: United States, Europe, Japan</span><span data-l="fr">~870 actions&nbsp;: États-Unis, Europe, Japon</span></dd>
+        <dd><span data-l="en">Stocks from the United States, Europe and Japan, and growing</span><span data-l="fr">Actions des États-Unis, d'Europe et du Japon, univers en extension</span></dd>
       </div>
       <div>
         <dt><span data-l="en">Reports</span><span data-l="fr">Rapports</span></dt>
@@ -124,7 +124,7 @@
   <div class="proof">
     <article>
       <h3><span data-l="en">Reading a company like an analyst</span><span data-l="fr">Lire une société comme un analyste</span></h3>
-      <p><span data-l="en">For each of the 870 stocks: valuation multiples, the analyst consensus with its low, average and high targets, earnings revisions over one and three months, and the latest 10-K or 20-F one click away. Peers are suggested from the same industry and region.</span><span data-l="fr">Pour chacune des 870 actions&nbsp;: multiples de valorisation, consensus des analystes avec objectifs bas, moyen et haut, révisions de bénéfices sur un et trois mois, et le dernier 10-K ou 20-F à un clic. Les pairs sont suggérés dans la même industrie et la même région.</span></p>
+      <p><span data-l="en">For every stock followed: valuation multiples, the analyst consensus with its low, average and high targets, earnings revisions over one and three months, and the latest 10-K or 20-F one click away. Peers are suggested from the same industry and region.</span><span data-l="fr">Pour chaque action suivie&nbsp;: multiples de valorisation, consensus des analystes avec objectifs bas, moyen et haut, révisions de bénéfices sur un et trois mois, et le dernier 10-K ou 20-F à un clic. Les pairs sont suggérés dans la même industrie et la même région.</span></p>
     </article>
     <article>
       <h3><span data-l="en">Measuring a portfolio like a manager</span><span data-l="fr">Mesurer un portefeuille comme un gérant</span></h3>
@@ -144,32 +144,31 @@
 
   <div class="window">
     <div class="tabs" role="tablist" aria-label="Tabs">
-      <button type="button" role="tab" id="t-perf" aria-controls="p-perf" aria-selected="true"><span data-l="en">Portfolio</span><span data-l="fr">Portefeuille</span></button>
+      <button type="button" role="tab" id="t-sheet" aria-controls="p-sheet" aria-selected="true"><span data-l="en">Stock sheet</span><span data-l="fr">Fiche titre</span></button>
       <button type="button" role="tab" id="t-screen" aria-controls="p-screen" aria-selected="false" tabindex="-1"><span data-l="en">Screener</span><span data-l="fr">Screener</span></button>
       <button type="button" role="tab" id="t-compare" aria-controls="p-compare" aria-selected="false" tabindex="-1"><span data-l="en">Compare</span><span data-l="fr">Comparer</span></button>
-      <button type="button" role="tab" id="t-regime" aria-controls="p-regime" aria-selected="false" tabindex="-1"><span data-l="en">Market regime</span><span data-l="fr">Régime de marché</span></button>
       <button type="button" role="tab" id="t-rates" aria-controls="p-rates" aria-selected="false" tabindex="-1"><span data-l="en">Rates</span><span data-l="fr">Taux</span></button>
       <button type="button" role="tab" id="t-crypto" aria-controls="p-crypto" aria-selected="false" tabindex="-1"><span data-l="en">Bonds and crypto</span><span data-l="fr">Obligations et crypto</span></button>
       <button type="button" role="tab" id="t-news" aria-controls="p-news" aria-selected="false" tabindex="-1"><span data-l="en">News</span><span data-l="fr">Actualités</span></button>
       <button type="button" role="tab" id="t-runs" aria-controls="p-runs" aria-selected="false" tabindex="-1"><span data-l="en">Runs</span><span data-l="fr">Runs</span></button>
     </div>
 
-    <div class="panel" role="tabpanel" id="p-perf" aria-labelledby="t-perf">
+    <div class="panel" role="tabpanel" id="p-sheet" aria-labelledby="t-sheet">
       <div class="panel-text">
-        <h3><span data-l="en">Portfolio return and risk</span><span data-l="fr">Performance et risque d'un portefeuille</span></h3>
-        <p><span data-l="en">Rebuilt from the transactions kept in Excel: time-weighted return, dividends net of withholding tax by country, comparison with a benchmark, attribution by sector, volatility, drawdown, Sharpe ratio, tracking error and value at risk.</span><span data-l="fr">Reconstruit à partir des transactions tenues dans Excel&nbsp;: rendement pondéré par le temps, dividendes nets de retenue à la source par pays, comparaison à un indice, attribution sectorielle, volatilité, perte maximale, ratio de Sharpe, tracking error et valeur à risque.</span></p>
-        <p class="aside"><span data-l="en">The screenshot shows an example portfolio: fictitious transactions, real market prices.</span><span data-l="fr">La capture montre un portefeuille d'exemple&nbsp;: transactions fictives, cours de marché réels.</span></p>
+        <h3><span data-l="en">Every company's sheet, and its official reports</span><span data-l="fr">La fiche de chaque société, et ses rapports officiels</span></h3>
+        <p><span data-l="en">Price chart with results and dividend dates, the analyst consensus (number of analysts, recommendation, low, average and high target) and the revisions of earnings forecasts over one and three months.</span><span data-l="fr">Graphique de cours avec dates de résultats et de dividendes, consensus des analystes (nombre, recommandation, objectif bas, moyen et haut) et révisions des prévisions de bénéfices sur un et trois mois.</span></p>
+        <p class="aside"><span data-l="en">A Reports line opens the latest 10-K (or 20-F), the latest filing of any kind, or the investor relations page for companies outside the SEC.</span><span data-l="fr">Une ligne Rapports ouvre le dernier 10-K (ou 20-F), le dernier dépôt quel qu'il soit, ou la page relations investisseurs des sociétés hors SEC.</span></p>
       </div>
-      <button type="button" class="shot-btn" data-zoom="05_performance"><img data-shot="05_performance" src="images/05_performance.webp" width="1440" height="880" loading="lazy" alt="Performance tab: an example portfolio against the MSCI World, with a table of return and risk statistics"></button>
+      <button type="button" class="shot-btn" data-zoom="02_stock_sheet"><img data-shot="02_stock_sheet" src="images/02_stock_sheet.webp" width="1440" height="880" loading="lazy" alt="Stock sheet of PepsiCo: links to the latest 10-K and 10-Q, analyst consensus and a five-year price chart"></button>
     </div>
 
     <div class="panel" role="tabpanel" id="p-screen" aria-labelledby="t-screen">
       <div class="panel-text">
         <h3><span data-l="en">The whole universe on one table</span><span data-l="fr">Tout l'univers dans un seul tableau</span></h3>
-        <p><span data-l="en">About 870 stocks from the United States, Europe and Japan with returns, distance from the 52-week high, valuation multiples and the analyst consensus, filtered by sector and zone.</span><span data-l="fr">Environ 870 actions des États-Unis, d'Europe et du Japon avec performances, écart au plus haut sur un an, multiples de valorisation et consensus des analystes, filtrées par secteur et par zone.</span></p>
+        <p><span data-l="en">Every stock in the universe, from the United States, Europe and Japan, with returns, distance from the 52-week high, valuation multiples and the analyst consensus, filtered by sector and zone.</span><span data-l="fr">Toutes les actions de l'univers, des États-Unis, d'Europe et du Japon, avec performances, écart au plus haut sur un an, multiples de valorisation et consensus des analystes, filtrées par secteur et par zone.</span></p>
         <p class="aside"><span data-l="en">Reading flags mark stressed stocks, small caps and earnings within 14 days; every price is also shown in the currency of your choice.</span><span data-l="fr">Des repères signalent les titres sous tension, les petites capitalisations et les résultats sous 14 jours&nbsp;; chaque cours est aussi affiché dans la devise de votre choix.</span></p>
       </div>
-      <button type="button" class="shot-btn" data-zoom="01_screen"><img data-shot="01_screen" src="images/01_screen.webp" width="1440" height="880" loading="lazy" alt="Screener tab: a table of about 870 stocks with sector, zone, price, returns, distance from the high and valuation multiples"></button>
+      <button type="button" class="shot-btn" data-zoom="01_screen"><img data-shot="01_screen" src="images/01_screen.webp" width="1440" height="880" loading="lazy" alt="Screener tab: a table of stocks with sector, zone, price, returns, distance from the high and valuation multiples"></button>
     </div>
 
     <div class="panel" role="tabpanel" id="p-compare" aria-labelledby="t-compare">
@@ -179,15 +178,6 @@
         <p class="aside"><span data-l="en">Insider transactions, institutional holders and the dividend history sit in the next tab.</span><span data-l="fr">Transactions des dirigeants, investisseurs institutionnels et historique des dividendes sont dans l'onglet suivant.</span></p>
       </div>
       <button type="button" class="shot-btn" data-zoom="03_compare"><img data-shot="03_compare" src="images/03_compare.webp" width="1440" height="880" loading="lazy" alt="Compare tab: PepsiCo against three suggested peers, returns rebased to 100 and a table of statistics"></button>
-    </div>
-
-    <div class="panel" role="tabpanel" id="p-regime" aria-labelledby="t-regime">
-      <div class="panel-text">
-        <h3><span data-l="en">The market regime and the cycle</span><span data-l="fr">Le régime de marché et le cycle</span></h3>
-        <p><span data-l="en">About thirty signals (yield curve, credit spreads, volatility, breadth, factor leadership) are grouped into five families and scored. The regime with the most support is suggested, never imposed, and each signal says in plain words what it measures and what it says today.</span><span data-l="fr">Une trentaine de signaux (courbe des taux, spreads de crédit, volatilité, largeur du marché, facteurs en tête) sont regroupés en cinq familles et notés. Le régime le plus soutenu est suggéré, jamais imposé, et chaque signal dit en mots simples ce qu'il mesure et ce qu'il indique aujourd'hui.</span></p>
-        <p class="aside"><span data-l="en">The OECD leading indicators place each economy in its phase of the cycle.</span><span data-l="fr">Les indicateurs avancés de l'OCDE placent chaque économie dans sa phase du cycle.</span></p>
-      </div>
-      <button type="button" class="shot-btn" data-zoom="06_market_regime"><img data-shot="06_market_regime" src="images/06_market_regime.webp" width="1440" height="880" loading="lazy" alt="Market regime tab with a gauge, five signal family cards and a signal table"></button>
     </div>
 
     <div class="panel" role="tabpanel" id="p-rates" aria-labelledby="t-rates">
@@ -230,7 +220,6 @@
   <h3 class="sub-h"><span data-l="en">More screens</span><span data-l="fr">Autres écrans</span></h3>
   <ul class="gallery">
     <li><button type="button" data-zoom="15_detached"><img data-shot="15_detached" src="images/15_detached.webp" width="1440" height="880" loading="lazy" alt=""><span data-l="en">The stock sheet in its own window</span><span data-l="fr">La fiche titre dans sa propre fenêtre</span></button></li>
-    <li><button type="button" data-zoom="18_regime_history"><img data-shot="18_regime_history" src="images/18_regime_history.webp" width="1440" height="880" loading="lazy" alt=""><span data-l="en">History of the regime signals</span><span data-l="fr">Historique des signaux de régime</span></button></li>
     <li><button type="button" data-zoom="22_cycle"><img data-shot="22_cycle" src="images/22_cycle.webp" width="1440" height="880" loading="lazy" alt=""><span data-l="en">Economic cycle from OECD indicators</span><span data-l="fr">Cycle économique d'après l'OCDE</span></button></li>
     <li><button type="button" data-zoom="17_currencies"><img data-shot="17_currencies" src="images/17_currencies.webp" width="1440" height="880" loading="lazy" alt=""><span data-l="en">Exchange rates checked against the ECB</span><span data-l="fr">Taux de change contrôlés par la BCE</span></button></li>
     <li><button type="button" data-zoom="24_bonds"><img data-shot="24_bonds" src="images/24_bonds.webp" width="1440" height="880" loading="lazy" alt=""><span data-l="en">Bond ETFs: yield, duration, rating</span><span data-l="fr">ETF obligataires&nbsp;: rendement, duration, notation</span></button></li>
@@ -278,7 +267,7 @@
     <div>
       <h3><span data-l="en">Rules kept from day one</span><span data-l="fr">Règles tenues depuis le premier jour</span></h3>
       <ul class="plain">
-        <li><span data-l="en">Every method cites its source, from the risk statistics to the regime signals.</span><span data-l="fr">Chaque méthode cite sa source, des statistiques de risque aux signaux de régime.</span></li>
+        <li><span data-l="en">Every method cites its source, from the risk statistics to the bond calculations.</span><span data-l="fr">Chaque méthode cite sa source, des statistiques de risque aux calculs obligataires.</span></li>
         <li><span data-l="en">A source that fails leaves the app usable: the last cache is kept and the tab says why.</span><span data-l="fr">Une source en panne laisse l'application utilisable&nbsp;: le dernier cache est gardé et l'onglet dit pourquoi.</span></li>
         <li><span data-l="en">Network calls run in background threads, only for what is on screen.</span><span data-l="fr">Les appels réseau tournent en tâche de fond, seulement pour ce qui est à l'écran.</span></li>
         <li><span data-l="en">About 3,600 translated strings, and a test that fails on any untranslated label.</span><span data-l="fr">Environ 3 600 chaînes traduites, et un test qui échoue sur tout libellé non traduit.</span></li>
@@ -311,6 +300,6 @@
   <img alt="">
 </dialog>
 
-<script src="site.js?v=2026-10-22" defer></script>
+<script src="site.js?v=2026-10-22b" defer></script>
 </body>
 </html>
